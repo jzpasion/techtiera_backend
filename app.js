@@ -3,6 +3,7 @@ var app = express();
 
 const registerRoute = require('./api/route/registerRoute');
 const loginRoute = require('./api/route/loginRoute');
+const verifyRoute = require('./api/route/verifyRoute');
 
 app.use(function(req, res , next){
     res.setHeader("Access-Control-Allow-Origin" , "*");
@@ -16,5 +17,6 @@ app.use(function(req, res , next){
 app.use(express.json());
 app.use('/api/registration',registerRoute);
 app.use('/api/loginAuth', loginRoute);
+app.use('/api/auth' , verifyRoute);
 
 module.exports = app;

@@ -15,9 +15,13 @@ const login = async (req ,res ) =>{
 
     if(await bcrypt.compare(password, user.password)){
 
-        const token = jwt.sign({id: user._id ,email: user.email },jwt_secret)
+        const token = jwt.sign({id: user._id ,email: user.email },jwt_secret,{
+            expiresIn: "1h",
+        })
 
-        return res.status(200).json({status: "ok" , data:token})
+        user.token = token;
+
+        return res.status(201).json({status: "ok" , data:user})
     }
     
     return res.json({ status: 'error', error: 'Invalid username/password' })
