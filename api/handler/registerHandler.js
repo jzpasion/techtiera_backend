@@ -19,7 +19,6 @@ const register = (req ,res) =>{
             if(err){
                 return res.status(500).json({error:err})
             }
-            console.log(pass);
             let newUser = new userRegister({
                 firstName: firstname,
                 lastName : lastname,
@@ -33,7 +32,6 @@ const register = (req ,res) =>{
             })
             .catch(err =>{
                 if (err.code === 11000) {
-                    // duplicate key
                     return res.json({ status: 'error', error: 'email already in use!' });
                 }
                 throw err

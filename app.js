@@ -1,22 +1,8 @@
 var express = require('express');
 var app = express();
-const mongoose = require("mongoose");
-const uri = "mongodb+srv://backend:backendpassword@backendexam.newrsgd.mongodb.net/?retryWrites=true&w=majority";
-
-async function connect(){
-    try{
-        await mongoose.connect(uri);
-        console.log("connected");
-    }catch(err){
-        console.log(err);
-    }
-}
-
-connect();
 
 const registerRoute = require('./api/route/registerRoute');
 const loginRoute = require('./api/route/loginRoute');
-const { login } = require('./api/handler/loginHandler');
 
 app.use(function(req, res , next){
     res.setHeader("Access-Control-Allow-Origin" , "*");
